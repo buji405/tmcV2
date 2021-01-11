@@ -9,7 +9,6 @@ interface Props {
 
 const TableRow = (props: Props) => {
   const { handleSort, keyName, label } = props;
-  console.log("KEY", keyName);
   return (
     <span className="row-container">
       <b className="label">{label}</b>

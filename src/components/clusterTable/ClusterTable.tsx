@@ -44,7 +44,6 @@ const ClusterTable = (props: Props) => {
   };
 
   const sortStrings = (sortOrder: string, key: any) => {
-    console.log("click", key);
     let filtered;
     const dataCopy = [...data];
 
