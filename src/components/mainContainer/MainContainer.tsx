@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import data from "../data/clusters.json";
+import data from "../../data/clusters.json";
 import ClusterTable from "../clusterTable/ClusterTable";
 import SearchBar from "../searchBar/SearchBar";
 import "./mainContainer.css";
