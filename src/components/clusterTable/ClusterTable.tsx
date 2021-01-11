@@ -80,30 +80,31 @@ const ClusterTable = (props: Props) => {
           handleSort={sortStrings}
         />
 
-        {data
-          .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-          .map((cluster: ClusterData) => {
-            return (
-              <>
-                <span className="cell">{cluster.name}</span>
-                <span className="cell">{cluster.os}</span>
-                <span className="cell">{cluster.cores}</span>
-                <span className="cell">{cluster.pods}</span>
-                <span className="cell">{cluster.nodes}</span>
-                <span className="cell">{cluster.total_memory_gb}</span>
-                <span className="cell">
-                  {cluster.labels.map((label, index) => {
-                    return formatData(index, label);
-                  })}
-                </span>
-                <span className="cell">
-                  {cluster.namespaces.map((namespace, index) => {
-                    return formatData(index, namespace);
-                  })}
-                </span>
-              </>
-            );
-          })}
+        {data.length > 0 &&
+          data
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((cluster: ClusterData) => {
+              return (
+                <>
+                  <span className="cell">{cluster.name}</span>
+                  <span className="cell">{cluster.os}</span>
+                  <span className="cell">{cluster.cores}</span>
+                  <span className="cell">{cluster.pods}</span>
+                  <span className="cell">{cluster.nodes}</span>
+                  <span className="cell">{cluster.total_memory_gb}</span>
+                  <span className="cell">
+                    {cluster.labels.map((label, index) => {
+                      return formatData(index, label);
+                    })}
+                  </span>
+                  <span className="cell">
+                    {cluster.namespaces.map((namespace, index) => {
+                      return formatData(index, namespace);
+                    })}
+                  </span>
+                </>
+              );
+            })}
       </div>
       <TablePagination
         component="div"

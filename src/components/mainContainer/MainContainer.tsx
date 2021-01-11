@@ -18,7 +18,6 @@ const MainContainer = () => {
           No results found, try another search.
         </p>
       )}
-      )
     </div>
   );
 };
