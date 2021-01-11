@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./search.css";
 
 interface SearchProps {
@@ -9,6 +9,7 @@ interface SearchProps {
 
 const SearchBar = (props: SearchProps) => {
   const { data, initialData, setData } = props;
+  const [value, setValue] = useState("");
 
   const searchResults = (searchQuery: string) => {
     const searchString = searchQuery.toLowerCase();
@@ -24,6 +25,7 @@ const SearchBar = (props: SearchProps) => {
       filteredData = initialData;
     }
     setData(filteredData);
+    setValue(searchString);
   };
 
   return (
@@ -34,10 +36,17 @@ const SearchBar = (props: SearchProps) => {
           type="text"
           placeholder="Search clusters..."
           onChange={(e) => searchResults(e.target.value)}
+          value={value}
         />
       </div>
       <div className="reset-btn">
-        <button className="link" onClick={() => setData(initialData)}>
+        <button
+          className="link"
+          onClick={() => {
+            setData(initialData);
+            setValue("");
+          }}
+        >
           Reset Filters
         </button>
       </div>
