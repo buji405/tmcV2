@@ -1,0 +1,17 @@
+.tableGridContainer {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border-bottom: 1px solid lightgray;
+  width: auto;
+  margin: 25px 10px 0px 10px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid lightgrey;
+  height: 50px;
+}
