@@ -8,11 +8,7 @@ interface Props {
   setData: Function;
 }
 
-type tplotOptions = {
-  [key: string]: ClusterData;
-};
-
-const ClusterTable = (props: Props, sort: tplotOptions) => {
+const ClusterTable = (props: Props) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
 
