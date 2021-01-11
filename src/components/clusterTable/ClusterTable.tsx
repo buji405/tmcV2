@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import TableRow from "../tableRow/TableRow";
 import TablePagination from "@material-ui/core/TablePagination";
 import "./tablestyle.css";
@@ -8,7 +8,11 @@ interface Props {
   setData: Function;
 }
 
-const ClusterTable = (props: Props) => {
+type tplotOptions = {
+  [key: string]: ClusterData;
+};
+
+const ClusterTable = (props: Props, sort: tplotOptions) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
 
@@ -43,7 +47,7 @@ const ClusterTable = (props: Props) => {
     setPage(0);
   };
 
-  const sortStrings = (sortOrder: string, key: any) => {
+  const sortStrings = (sortOrder: string, key: string) => {
     let filtered;
     const dataCopy = [...data];
 
@@ -82,23 +86,43 @@ const ClusterTable = (props: Props) => {
         {data.length > 0 &&
           data
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((cluster: ClusterData) => {
+            .map((cluster: ClusterData, i) => {
               return (
                 <>
-                  <span className="cell">{cluster.name}</span>
-                  <span className="cell">{cluster.os}</span>
-                  <span className="cell">{cluster.cores}</span>
-                  <span className="cell">{cluster.pods}</span>
-                  <span className="cell">{cluster.nodes}</span>
-                  <span className="cell">{cluster.total_memory_gb}</span>
-                  <span className="cell">
+                  <span className="cell" key={i + Math.random()}>
+                    {cluster.name}
+                  </span>
+                  <span className="cell" key={i + Math.random()}>
+                    {cluster.os}
+                  </span>
+                  <span className="cell" key={i + Math.random()}>
+                    {cluster.cores}
+                  </span>
+                  <span className="cell" key={i + Math.random()}>
+                    {cluster.pods}
+                  </span>
+                  <span className="cell" key={i + Math.random()}>
+                    {cluster.nodes}
+                  </span>
+                  <span className="cell" key={i + Math.random()}>
+                    {cluster.total_memory_gb}
+                  </span>
+                  <span className="cell" key={i + Math.random()}>
                     {cluster.labels.map((label, index) => {
-                      return formatData(index, label);
+                      return (
+                        <Fragment key={index}>
+                          {formatData(index, label)}
+                        </Fragment>
+                      );
                     })}
                   </span>
-                  <span className="cell">
+                  <span className="cell" key={Math.random()}>
                     {cluster.namespaces.map((namespace, index) => {
-                      return formatData(index, namespace);
+                      return (
+                        <Fragment key={index}>
+                          {formatData(index, namespace)}
+                        </Fragment>
+                      );
                     })}
                   </span>
                 </>
